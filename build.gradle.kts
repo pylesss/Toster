@@ -11,9 +11,14 @@ tasks.register("clean", Delete::class) {
 }
 
 buildscript {
+    val kotlinVersion by extra("1.8.21")
     val sqlDelightVersion = "1.5.5"
-
     dependencies {
         classpath("com.squareup.sqldelight:gradle-plugin:$sqlDelightVersion")
+        classpath("com.android.tools.build:gradle:8.0.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+    }
+    repositories {
+        mavenCentral()
     }
 }

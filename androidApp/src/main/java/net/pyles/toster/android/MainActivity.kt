@@ -13,6 +13,7 @@ import com.jetbrains.handson.kmm.shared.cache.DatabaseDriverFactory
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var launchesRecyclerView: RecyclerView
@@ -21,12 +22,14 @@ class MainActivity : AppCompatActivity() {
     private val launchesRvAdapter = LaunchesRvAdapter(listOf())
     private val sdk = SpaceXSDK(DatabaseDriverFactory(this))
     private val mainScope = MainScope()
+    private val presenter: GreetPresenter by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        title = "SpaceX Launches"
+        title = presenter.print()
         setContentView(R.layout.activity_main)
+
 
         launchesRecyclerView = findViewById(R.id.launchesListRv)
         progressBarView = findViewById(R.id.progressBar)

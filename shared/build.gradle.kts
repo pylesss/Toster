@@ -38,6 +38,10 @@ kotlin {
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
+                with(Deps.Koin) {
+                    api(core)
+                    api(test)
+                }
             }
         }
         val commonTest by getting {
@@ -80,6 +84,10 @@ android {
     defaultConfig {
         minSdk = 24
     }
+}
+dependencies {
+    val coreVersion = "1.10.0"
+    implementation("androidx.core:core-ktx:$coreVersion")
 }
 
 sqldelight {

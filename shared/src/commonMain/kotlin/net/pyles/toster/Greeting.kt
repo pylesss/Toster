@@ -7,27 +7,31 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 
-class Greeting {
-    private val platform: Platform = getPlatform()
+class Greeting (private val platform: Platform){
 
-    private val httpClient = HttpClient {
-        install(ContentNegotiation) {
-            json(Json {
-                prettyPrint = true
-                isLenient = true
-                ignoreUnknownKeys = true
-            })
-        }
+    fun greeting(): String {
+        return "Hello, ${platform.name}!"
     }
-
-    @Throws(Exception::class)
-    suspend fun greet(): String {
+//    private val platform: Platform = getPlatform()
+//
+//    private val httpClient = HttpClient {
+//        install(ContentNegotiation) {
+//            json(Json {
+//                prettyPrint = true
+//                isLenient = true
+//                ignoreUnknownKeys = true
+//            })
+//        }
+//    }
+//
+//    @Throws(Exception::class)
+//    suspend fun greet(): String {
 //        val rockets: List<RocketLaunch> =
 //            httpClient.get("https://api.spacexdata.com/v5/launches").body()
 //        val lastSuccessLaunch = rockets.last { it.launchSuccess == true }
 //        return "Guess what it is! > ${platform.name.reversed()}!" +
 //                "\nThere are only ${daysUntilNewYear()} left until New Year! 🎆" +
 //                "\nThe last successful launch was ${lastSuccessLaunch.launchDateUTC} 🚀"
-        return  ""
-    }
+//        return  ""
+//    }
 }
